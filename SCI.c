@@ -12,23 +12,15 @@ static void SCI_Transmit(unsigned char data){
 	SCID = data;
 }
 
-/* SCI_Rover -- On privilégie la réception à l'envoi de donnée */
+/* Initiation pour 25,165824Mhz */
 extern void SCI_Init(void){
-	SCIBDL = 0x68;	// On configure le BR pour un baudrate à 6900 et une fréquence de bus de 16MHz
+	SCIBDL = 0xA4;	// On configure le BR pour un baudrate à 6900 et une fréquence de bus de 25,165824Mhz
 	SCI1C1_M = 0;	// Trame constitué de: 1bit start, 8 bits données, 1 bit stop
 	SCI1C2_TE = 1;
 	SCI1C2_RE = 1;
 	SCI1C2_TCIE = 0;
 }
 
-/* SCI_Manette-- On privilégie la réception à l'envoi de donnée */
-extern void SCI_Init(void){
-	SCIBDL = 0x34;	// On configure le BR pour un baudrate à 6900 et une fréquence de bus de 8MHz
-	SCI1C1_M = 0;	// Trame constitué de: 1bit start, 8 bits données, 1 bit stop
-	SCI1C2_TE = 1;
-	SCI1C2_RE = 1;
-	SCI1C2_TCIE = 0;
-}
 
 extern void Func_Update(unsigned char data){
 	donnee.V = 1;
